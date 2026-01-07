@@ -1,0 +1,27 @@
+{
+    "name": "ai-agent-workflow",
+    "version": "1.0.0",
+    "description": "CLI to verify and install AI Agent workflows into repositories.",
+    "bin": {
+        "ai-agent-workflow": "./bin/cli.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ai",
+        "agents",
+        "workflow",
+        "cli"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "commander": "^11.1.0",
+        "fs-extra": "^11.2.0",
+        "inquirer": "^9.2.11",
+        "link": "^2.1.1"
+    },
+    "type": "module"
+}
