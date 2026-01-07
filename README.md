@@ -4,6 +4,10 @@
 
 AI Agent Workflow forces your AI tools (Cursor, Claude, Gemini CLI, etc.) to behave like a structured **Team of Specialists** rather than a generic chatbot.
 
+## 📺 Demo
+[![AI Agent Workflow Demo](https://img.youtube.com/vi/edfrS1skdcU/maxresdefault.jpg)](https://www.youtube.com/watch?v=edfrS1skdcU)
+*Watch how to transform your repo into an AI Specialist Team.*
+
 ## 🎯 The Goal
 
 We inject specific **Rules** and **System Prompts** into your repository to enforce:
