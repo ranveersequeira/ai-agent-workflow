@@ -1,6 +1,6 @@
 {
     "name": "ai-agent-workflow",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Transform your repository into an AI Specialist Team. One command to install role-based AI agents for any tech stack.",
     "bin": {
         "ai-agent-workflow": "./bin/cli.js"
@@ -45,12 +45,12 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/yourusername/ai-agent-workflow.git"
+        "url": "https://github.com/ranveersequeira/ai-agent-workflow.git"
     },
     "bugs": {
-        "url": "https://github.com/yourusername/ai-agent-workflow/issues"
+        "url": "https://github.com/ranveersequeira/ai-agent-workflow/issues"
     },
-    "homepage": "https://github.com/yourusername/ai-agent-workflow#readme",
+    "homepage": "https://github.com/ranveersequeira/ai-agent-workflow#readme",
     "engines": {
         "node": ">=18.0.0"
     },

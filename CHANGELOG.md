@@ -178,5 +178,5 @@ npx ai-agent-workflow@1.0.0
 
 **Links:**
 - [npm package](https://www.npmjs.com/package/ai-agent-workflow)
-- [GitHub repository](https://github.com/yourusername/ai-agent-workflow)
-- [Documentation](https://github.com/yourusername/ai-agent-workflow#readme)
+- [GitHub repository](https://github.com/ranveersequeira/ai-agent-workflow)
+- [Documentation](https://github.com/ranveersequeira/ai-agent-workflow#readme)

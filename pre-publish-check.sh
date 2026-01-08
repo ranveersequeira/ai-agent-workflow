@@ -128,11 +128,11 @@ else
 fi
 
 if grep -q '"repository"' package.json; then
-    if grep -q 'yourusername' package.json; then
-        echo -e "${YELLOW}⚠${NC}  Repository URL contains placeholder (update before publishing)"
-    else
+    if grep -q 'ranveersequeira' package.json; then
         echo -e "${GREEN}✓${NC} Repository URL set"
         ((passed++))
+    else
+        echo -e "${YELLOW}⚠${NC}  Repository URL needs to be updated"
     fi
 else
     echo -e "${RED}✗${NC} Repository field missing"
