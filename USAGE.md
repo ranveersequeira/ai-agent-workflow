@@ -1,80 +1,49 @@
-# Using AI Agent Workflow
+# Using the AI Agent Workflow Plugin
 
-This guide details how to use the **AI Agent Workflow** directly with your existing tools.
+Once you have installed the plugin (see [README.md](README.md)), here is how to utilize the new workflow capabilities in your projects.
 
-## The Core Concept
-The `ai-agent-workflow` package installs a "Law" (Cursor Rules) and "Configuration" (Gemini System Prompt) into your repository. This forces your AI tools to behave like a team of specialists.
+## 1. Setup Phase
 
-## Workflow with Gemini CLI
+The plugin's primary job is **Bootstrap**. It does not run permanently; it simply installs the "Brains" (Agents) into your project.
 
-Since the setup configured `.gemini/system.md`, the native `gemini` command now acts as the **System Orchestrator**.
+### Trigger Phrases
+Use these prompts with Gemini or Claude to trigger the setup:
 
-### 1. Start a Task
-Run the standard CLI command:
+*   *"Initialize the AI agents for this repo."*
+*   *"Setup a frontend react workflow."*
+*   *"Add mobile flutter agents."*
+*   *"Configure devops terraform roles."*
 
+### Interactive vs Automatic
+*   **Prompts**: If you don't specify a stack, the AI might ask you (or the tool defaults to interactive prompts if run directly, but the plugin tries to infer).
+*   **Arguments**: You can be specific: *"Setup agent workflow for role=backend stack=django"*.
+
+## 2. Development Phase
+
+After the plugin runs, your project now contains `.cursor/rules` and `.gemini/system.md`.
+
+### The "Loop"
+The installed agents enforce a strict loop:
+
+1.  **Orchestrator**: "I see you want a feature. Let's call the Planner."
+2.  **Planner**: "Here is the `implementation_plan.md`."
+3.  **User**: "Looks good. Implement Extension 1."
+4.  **Developer Agent**: Writes the code.
+5.  **Reviewer**: "I found a bug in line 42."
+
+### In Gemini CLI
+Since `.gemini/system.md` is present:
 ```bash
-gemini "I need to add a dark mode toggle"
+gemini "Implement the login feature based on the plan"
 ```
+*The CLI will automatically adopt the Orchestrator persona.*
 
-### 2. The Native Loop
-The Orchestrator will reply.
--   It will **instruct** you to Invoke the Feature Planner.
--   **You** must simply copy/paste or type the command it gives you.
+### In Claude Code / Cursor
+Since `.cursor/rules` are present:
+*   Use `@Feature Planner` to start a task.
+*   Use `@Frontend Developer` to write code.
+*   The system prompt references these rules to keep the context active.
 
-*Example:*
-> **Orchestrator**: "State: Unplanned. Command: INVOKE Feature Planner"
-> **You**: `gemini "INVOKE Feature Planner"`
+## 3. Customization
 
-This manual loop (Model -> specific command -> You run command -> Model) keeps you in full control while enforcing the process.
-
-## Available Agents (Role-Based)
-
-The workflow includes specialized agents based on your role:
-
-### Standard Agents (All Roles)
-- **System Orchestrator**: Enforces the workflow loop
-- **Feature Planner**: Creates implementation plans
-- **QA Agent**: Writes and reviews tests
-- **Review Agent**: Code quality reviews
-- **Documentation Agent**: Updates documentation
-
-### Role-Specific Agents
-- **Backend Node Agent**: Node.js/Express APIs
-- **Backend Flask Agent**: Python Flask APIs
-- **Frontend React Agent**: React applications
-- **Mobile Flutter Agent**: Cross-platform mobile apps
-- **DevOps Terraform Agent**: Infrastructure as Code
-- **Database MongoDB Agent**: MongoDB operations
-
-### Custom Agents
-
-Don't see your stack? **Create your own agent!**
-
-See the comprehensive guide: [`docs/CREATE_CUSTOM_AGENT.md`](docs/CREATE_CUSTOM_AGENT.md)
-
-**Example Use Cases:**
-- Backend Django agent for Python/Django projects
-- Frontend Vue agent for Vue.js applications
-- DevOps Ansible agent for configuration management
-- Data Engineer DBT agent for data transformation
-- IT Admin Bash agent for system scripting
-
-The workflow is **stack-agnostic** — you can create agents for any technology you use.
-
-## Workflow with Cursor IDE
-
-Since the setup installed `.cursor/rules/*.md`:
-
-1.  Open **Cursor**.
-2.  Open **Composer** (Cmd+I or Cmd+L).
-3.  Type: `"Plan a dark mode toggle"`.
-4.  The **Feature Planner** rule will likely trigger (or you can explicitly mention `@Feature Planner`).
-5.  Follow the prompts from the agent.
-
-## Cleaning Up
-If you want to remove the agent configuration from your repository:
-
-```bash
-./cleanup.sh
-```
-This removes `.cursor/rules`, `.gemini`, and `GEMINI_GUIDE.md`.
+You can modify the installed agents in `.cursor/rules/` at any time. The plugin just provides the starter templates.

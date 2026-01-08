@@ -22,8 +22,13 @@ export async function runSetup(targetDir, options = {}) {
     const detectedStack = await detectStack(targetDir);
     let role, stack, agentsToInstall;
 
-    // 3. Prompt User (Role-based approach)
-    if (options.yes || process.env.CI) {
+    // 3. Prompt User (Role-based approach) or use provided options
+    if (options.role && options.stack) {
+        role = options.role;
+        stack = options.stack;
+        agentsToInstall = getAgentsForRole(role, stack);
+        console.log(chalk.green(`   Using provided configuration: ${role} / ${stack}`));
+    } else if (options.yes || process.env.CI) {
         console.log(chalk.yellow('   Skipping prompts (--yes or CI detected). Using defaults.'));
         role = 'fullstack';
         stack = detectedStack.framework || 'react';
@@ -70,7 +75,8 @@ export async function runSetup(targetDir, options = {}) {
     // 4. Analyze Dependencies
     const spinner = ora({
         text: 'Analyzing dependencies...',
-        color: 'cyan'
+        color: 'cyan',
+        isSilent: options.quiet
     }).start();
 
     const dependencies = await getDependencies(targetDir);
@@ -79,7 +85,8 @@ export async function runSetup(targetDir, options = {}) {
     // 5. Generate Profile
     const profileSpinner = ora({
         text: 'Generating project profile...',
-        color: 'cyan'
+        color: 'cyan',
+        isSilent: options.quiet
     }).start();
     await generateProfile(targetDir, role, stack, dependencies);
     profileSpinner.succeed(chalk.green('Project profile created'));
@@ -87,7 +94,8 @@ export async function runSetup(targetDir, options = {}) {
     // 6. Install Agents
     const agentSpinner = ora({
         text: 'Installing AI agents...',
-        color: 'cyan'
+        color: 'cyan',
+        isSilent: options.quiet
     }).start();
     await installAgents(targetDir, agentsToInstall);
     agentSpinner.succeed(chalk.green('Agents installed successfully'));
@@ -95,7 +103,8 @@ export async function runSetup(targetDir, options = {}) {
     // 7. Configure Native CLI
     const cliSpinner = ora({
         text: 'Configuring Gemini CLI...',
-        color: 'cyan'
+        color: 'cyan',
+        isSilent: options.quiet
     }).start();
     await configureNativeCli(targetDir);
     cliSpinner.succeed(chalk.green('Gemini CLI configured'));
@@ -103,7 +112,8 @@ export async function runSetup(targetDir, options = {}) {
     // 8. Install Cleanup Script
     const cleanupSpinner = ora({
         text: 'Setting up cleanup script...',
-        color: 'cyan'
+        color: 'cyan',
+        isSilent: options.quiet
     }).start();
     await installCleanup(targetDir);
     cleanupSpinner.succeed(chalk.green('Cleanup script ready'));

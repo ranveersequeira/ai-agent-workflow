@@ -1,0 +1,15 @@
+{
+    "name": "ai-agent-workflow",
+    "version": "2.0.1",
+    "description": "Transform your repository into an AI Specialist Team. One command to install role-based AI agents.",
+    "author": "DevKraft",
+    "mcpServers": {
+        "workflow-server": {
+            "command": "node",
+            "args": [
+                "${CLAUDE_PLUGIN_ROOT}/src/extension.js"
+            ],
+            "env": {}
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "ai-agent-workflow",
+    "version": "2.0.1",
+    "mcpServers": {
+        "workflow-server": {
+            "command": "node",
+            "args": [
+                "${extensionPath}/src/extension.js"
+            ],
+            "cwd": "${extensionPath}"
+        }
+    },
+    "contextFileName": "GEMINI.md"
+}
