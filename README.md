@@ -33,14 +33,36 @@ In your target repository (e.g., `~/Projects/my-app`), run:
 npx ai-agent-workflow
 ```
 
+The setup will ask: **"What do you build?"**  
+Choose your role:
+- 🎨 **Frontend Developer** (React, Vue, Angular, etc.)
+- ⚙️ **Backend Developer** (Node.js, Flask, Django, etc.)
+- 📱 **Mobile Developer** (React Native, Flutter, etc.)
+- 🚀 **DevOps Engineer** (Terraform, Kubernetes, etc.)
+- 📊 **Data Engineer** (Airflow, dbt, Spark, etc.)
+- 🛠️ **IT Administrator** (Bash, PowerShell, infrastructure, etc.)
+
 This will:
--   Detect your Tech Stack.
--   Generate `GEMINI_GUIDE.md`.
--   Install `.cursor/rules/*.md`.
--   Configure `.gemini/system.md`.
+-   Generate role-specific agent definitions.
+-   Create `GEMINI_GUIDE.md` for your stack.
+-   Install `.cursor/rules/*.md` (agent personas).
+-   Configure `.gemini/system.md` (Orchestrator).
 -   Install `cleanup.sh` (for removal).
 
-### 2. Usage
+### 2. Don't See Your Stack?
+
+No problem! Create custom agents for **any** technology:
+
+**Example**: Backend Flask developer without a Flask agent?
+
+1. Check the guide: [`docs/CREATE_CUSTOM_AGENT.md`](docs/CREATE_CUSTOM_AGENT.md)
+2. Create `agents/backend-flask-agent.md`
+3. Define Flask-specific best practices
+4. Run `npx ai-agent-workflow` again
+
+**The workflow is stack-agnostic** — if you can code it, you can create an agent for it.
+
+### 3. Usage
 
 **With Gemini CLI**:
 Just run `gemini "Your task"`. The configured system prompt will make it act as the Orchestrator.
@@ -54,6 +76,13 @@ To remove all traces of Gemini Agents from your repo:
 ```bash
 ./cleanup.sh
 ```
+
+## 📚 Documentation
+
+- **[Available Agents](docs/AGENTS.md)** - Browse all pre-built agents
+- **[Create Custom Agent](docs/CREATE_CUSTOM_AGENT.md)** - Make your own stack-specific agent
+- **[Setup Guide](SETUP.md)** - Installation instructions
+- **[Usage Guide](USAGE.md)** - How to use the workflow
 
 ---
 *Built for the Agentic Future.*

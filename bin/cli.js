@@ -2,11 +2,46 @@
 
 import { program } from 'commander';
 import chalk from 'chalk';
+import gradient from 'gradient-string';
+import figlet from 'figlet';
+import boxen from 'boxen';
 import path from 'path';
 import { runSetup } from '../src/setup.js';
 
-// Get package version (simple workaround for ESM JSON import)
-const VERSION = "1.0.0";
+// Get package version
+const VERSION = "2.0.0";
+
+// Custom gradient colors
+const coolGradient = gradient(['#667eea', '#764ba2']);
+const successGradient = gradient(['#56ab2f', '#a8e063']);
+
+// Display banner
+function showBanner() {
+    console.clear();
+    console.log(
+        coolGradient(
+            figlet.textSync('AI Agents', {
+                font: 'ANSI Shadow',
+                horizontalLayout: 'fitted'
+            })
+        )
+    );
+    console.log();
+    console.log(
+        boxen(
+            chalk.white('Transform your repository into an') + '\n' +
+            chalk.bold.cyan('AI Specialist Team') + '\n\n' +
+            chalk.gray('Version ' + VERSION),
+            {
+                padding: 1,
+                margin: { top: 0, bottom: 1, left: 2, right: 2 },
+                borderStyle: 'round',
+                borderColor: 'cyan',
+                align: 'center'
+            }
+        )
+    );
+}
 
 program
     .name('ai-agent-workflow')
@@ -16,21 +51,62 @@ program
     .option('-y, --yes', 'Skip prompts and accept defaults')
     .action(async (directory, options) => {
         try {
-            // Pass options to your setup logic, or just let process.argv handle it (but safer to pass)
-            // Since src/setup.js checked process.argv, that works, BUT commander strips args it consumed.
-            // Better to check 'options.yes'.
+            // Show banner
+            if (!options.yes && !process.env.CI) {
+                showBanner();
+            }
 
             const targetDir = path.resolve(process.cwd(), directory);
-            console.log(chalk.blue(`🤖 Starting AI Agent Workflow Setup`));
-            console.log(chalk.gray(`Target: ${targetDir}`));
+
+            if (!options.yes) {
+                console.log(chalk.blue.bold('\n🚀 Starting AI Agent Workflow Setup\n'));
+                console.log(chalk.gray('   Target: ') + chalk.cyan(targetDir));
+                console.log();
+            }
 
             await runSetup(targetDir, options);
 
-            console.log(chalk.green('\n✨ Setup complete!'));
-            console.log(chalk.white('You can now use "gemini" or Cursor to start your task.'));
-            console.log(chalk.gray('See USAGE.md for the workflow details.'));
+            // Success message
+            console.log();
+            console.log(
+                boxen(
+                    successGradient.multiline(
+                        '✨ Setup Complete! ✨\n\n' +
+                        'Your agents are ready to use'
+                    ),
+                    {
+                        padding: 1,
+                        margin: 1,
+                        borderStyle: 'double',
+                        borderColor: 'green',
+                        align: 'center'
+                    }
+                )
+            );
+
+            console.log(chalk.white.bold('\n📖 Next Steps:\n'));
+            console.log(chalk.gray('   1. ') + chalk.cyan('gemini "Your task"') + chalk.gray(' - Use Gemini CLI'));
+            console.log(chalk.gray('   2. Open ') + chalk.cyan('Cursor') + chalk.gray(' and start chatting'));
+            console.log(chalk.gray('   3. Check ') + chalk.cyan('USAGE.md') + chalk.gray(' for workflow details'));
+            console.log();
+            console.log(chalk.gray('   For cleanup: ') + chalk.yellow('./cleanup.sh'));
+            console.log();
+
         } catch (error) {
-            console.error(chalk.red('\n❌ Error:'), error.message);
+            console.log();
+            console.log(
+                boxen(
+                    chalk.red.bold('❌ Error\n\n') +
+                    chalk.white(error.message),
+                    {
+                        padding: 1,
+                        margin: 1,
+                        borderStyle: 'round',
+                        borderColor: 'red',
+                        align: 'left'
+                    }
+                )
+            );
             process.exit(1);
         }
     });

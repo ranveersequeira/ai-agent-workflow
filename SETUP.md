@@ -28,6 +28,20 @@ The tool injects configuration files directly into your repository:
 -   `.gemini/system.md`: Instructions for the CLI to use the Orchestrator.
 -   `cleanup.sh`: A script to easily remove all of the above.
 
+### 4. Configure .gitignore (Recommended)
+
+To avoid committing the generated configuration files to your repository, add the following entries to your `.gitignore` file:
+
+```gitignore
+# AI Agent Workflow - Generated files
+cleanup.sh
+.cursorrules
+.gemini/
+.cursor/
+```
+
+**Note**: Since these files are generated automatically by the setup tool, they should typically not be committed. Each developer should run the setup tool in their local environment.
+
 ## Verifying Installation
 
 **CLI Verification**:

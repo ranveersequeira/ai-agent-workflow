@@ -27,6 +27,40 @@ The Orchestrator will reply.
 
 This manual loop (Model -> specific command -> You run command -> Model) keeps you in full control while enforcing the process.
 
+## Available Agents (Role-Based)
+
+The workflow includes specialized agents based on your role:
+
+### Standard Agents (All Roles)
+- **System Orchestrator**: Enforces the workflow loop
+- **Feature Planner**: Creates implementation plans
+- **QA Agent**: Writes and reviews tests
+- **Review Agent**: Code quality reviews
+- **Documentation Agent**: Updates documentation
+
+### Role-Specific Agents
+- **Backend Node Agent**: Node.js/Express APIs
+- **Backend Flask Agent**: Python Flask APIs
+- **Frontend React Agent**: React applications
+- **Mobile Flutter Agent**: Cross-platform mobile apps
+- **DevOps Terraform Agent**: Infrastructure as Code
+- **Database MongoDB Agent**: MongoDB operations
+
+### Custom Agents
+
+Don't see your stack? **Create your own agent!**
+
+See the comprehensive guide: [`docs/CREATE_CUSTOM_AGENT.md`](docs/CREATE_CUSTOM_AGENT.md)
+
+**Example Use Cases:**
+- Backend Django agent for Python/Django projects
+- Frontend Vue agent for Vue.js applications
+- DevOps Ansible agent for configuration management
+- Data Engineer DBT agent for data transformation
+- IT Admin Bash agent for system scripting
+
+The workflow is **stack-agnostic** — you can create agents for any technology you use.
+
 ## Workflow with Cursor IDE
 
 Since the setup installed `.cursor/rules/*.md`:

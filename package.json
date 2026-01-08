@@ -1,10 +1,20 @@
 {
     "name": "ai-agent-workflow",
-    "version": "1.0.0",
-    "description": "CLI to verify and install AI Agent workflows into repositories.",
+    "version": "2.0.0",
+    "description": "Transform your repository into an AI Specialist Team. One command to install role-based AI agents for any tech stack.",
     "bin": {
         "ai-agent-workflow": "./bin/cli.js"
     },
+    "files": [
+        "bin/",
+        "src/",
+        "agents/",
+        "profiles/",
+        "README.md",
+        "SETUP.md",
+        "USAGE.md",
+        "docs/"
+    ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -12,16 +22,48 @@
         "ai",
         "agents",
         "workflow",
-        "cli"
+        "cli",
+        "gemini",
+        "cursor",
+        "automation",
+        "code-generation",
+        "development-tools",
+        "react",
+        "nextjs",
+        "vue",
+        "angular",
+        "fastapi",
+        "flask",
+        "django",
+        "nodejs",
+        "terraform",
+        "flutter",
+        "devtools",
+        "productivity"
     ],
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/ai-agent-workflow.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/ai-agent-workflow/issues"
+    },
+    "homepage": "https://github.com/yourusername/ai-agent-workflow#readme",
+    "engines": {
+        "node": ">=18.0.0"
+    },
     "dependencies": {
+        "boxen": "^7.1.1",
         "chalk": "^5.3.0",
         "commander": "^11.1.0",
+        "figlet": "^1.7.0",
         "fs-extra": "^11.2.0",
+        "gradient-string": "^2.0.2",
         "inquirer": "^9.2.11",
-        "link": "^2.1.1"
+        "link": "^2.1.1",
+        "ora": "^8.0.1"
     },
     "type": "module"
 }
