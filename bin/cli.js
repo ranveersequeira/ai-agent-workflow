@@ -9,7 +9,7 @@ import path from 'path';
 import { runSetup } from '../src/setup.js';
 
 // Get package version
-const VERSION = "2.0.0";
+const VERSION = "2.1.0";
 
 // Custom gradient colors
 const coolGradient = gradient(['#667eea', '#764ba2']);
@@ -64,7 +64,7 @@ program
                 console.log();
             }
 
-            await runSetup(targetDir, options);
+            const setupResult = await runSetup(targetDir, options);
 
             // Success message
             console.log();
@@ -84,11 +84,46 @@ program
                 )
             );
 
+            // Show tool-specific next steps
             console.log(chalk.white.bold('\n📖 Next Steps:\n'));
-            console.log(chalk.gray('   1. ') + chalk.cyan('gemini "Your task"') + chalk.gray(' - Use Gemini CLI'));
-            console.log(chalk.gray('   2. Open ') + chalk.cyan('Cursor') + chalk.gray(' and start chatting'));
-            console.log(chalk.gray('   3. Check ') + chalk.cyan('USAGE.md') + chalk.gray(' for workflow details'));
+
+            if (setupResult && setupResult.tools) {
+                if (setupResult.tools.includes('gemini')) {
+                    console.log(chalk.gray('   1. ') + chalk.cyan('gemini "Your task"') + chalk.gray(' - Use Gemini CLI'));
+                }
+                if (setupResult.tools.includes('cursor')) {
+                    console.log(chalk.gray('   2. Open ') + chalk.cyan('Cursor') + chalk.gray(' and start chatting'));
+                }
+                if (setupResult.tools.includes('opencode')) {
+                    console.log(chalk.gray('   3. ') + chalk.cyan('opencode "Your task"') + chalk.gray(' - Use OpenCode CLI'));
+                }
+            } else {
+                console.log(chalk.gray('   1. ') + chalk.cyan('gemini "Your task"') + chalk.gray(' - Use Gemini CLI'));
+                console.log(chalk.gray('   2. Open ') + chalk.cyan('Cursor') + chalk.gray(' and start chatting'));
+            }
+
+            console.log(chalk.gray('   • Check ') + chalk.cyan('USAGE.md') + chalk.gray(' for workflow details'));
             console.log();
+
+            // Show skills tip for frontend developers
+            if (setupResult && setupResult.role === 'frontend') {
+                console.log(chalk.white.bold('💡 Pro Tip:\n'));
+                console.log(chalk.gray('   Enhance your AI agents with additional skills:'));
+                console.log(chalk.cyan('   npx add-skill vercel-labs/agent-skills'));
+                console.log();
+            }
+
+            // Show workflow info
+            if (setupResult && setupResult.workflow) {
+                const workflowDescriptions = {
+                    standard: 'Planning → Development → Review',
+                    full: 'Planning → Dev → Test → Review → Docs → Git',
+                    minimal: 'Development → Review'
+                };
+                console.log(chalk.gray('   Workflow: ') + chalk.yellow(workflowDescriptions[setupResult.workflow] || setupResult.workflow));
+                console.log();
+            }
+
             console.log(chalk.gray('   For cleanup: ') + chalk.yellow('./cleanup.sh'));
             console.log();
 

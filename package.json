@@ -1,6 +1,6 @@
 {
     "name": "ai-agent-workflow",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "description": "Transform your repository into an AI Specialist Team. One command to install role-based AI agents for any tech stack.",
     "bin": {
         "ai-agent-workflow": "./bin/cli.js"
