@@ -4,9 +4,15 @@
 
 AI Agent Workflow forces your AI tools (Cursor, OpenCode, Gemini CLI) to behave like a structured **Team of Specialists** rather than a generic chatbot.
 
-## Demo
-[![AI Agent Workflow Demo](https://img.youtube.com/vi/edfrS1skdcU/maxresdefault.jpg)](https://www.youtube.com/watch?v=edfrS1skdcU)
-*Watch how to transform your repo into an AI Specialist Team.*
+## Video Tutorials
+
+### Installation Guide
+[![AI Agent Workflow Installation Guide](https://img.youtube.com/vi/_iR4D8rk6Xc/maxresdefault.jpg)](https://youtu.be/_iR4D8rk6Xc)
+*Learn how to install and set up AI Agent Workflow in 5 minutes.*
+
+### Cursor Usage Guide
+[![AI Agent Workflow Cursor Usage](https://img.youtube.com/vi/qpIk9jDNYrg/maxresdefault.jpg)](https://youtu.be/qpIk9jDNYrg)
+*Master AI Agent Workflow with Cursor IDE - Complete tutorial with real-world examples.*
 
 ---
 
